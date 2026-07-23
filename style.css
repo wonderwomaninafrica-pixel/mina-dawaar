@@ -67,6 +67,7 @@ p{ margin:0; }
   text-transform:uppercase;
   font-weight:500;
   color:var(--burgundy);
+  margin:0;
 }
 .eyebrow.on-dark{ color:var(--rose-on-dark); }
 
@@ -590,6 +591,14 @@ p{ margin:0; }
   color:rgba(244,239,230,0.65);
   display:inline-block;
   margin-bottom:26px;
+}
+.book-title-visible{
+  font-family:var(--f-display);
+  font-weight:500;
+  font-size:clamp(36px,4.6vw,56px);
+  letter-spacing:0.01em;
+  color:var(--ivory);
+  margin:14px 0 20px;
 }
 .book-hook{
   font-family:var(--f-display);
