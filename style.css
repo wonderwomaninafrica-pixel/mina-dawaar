@@ -407,8 +407,14 @@ p{ margin:0; }
 /* -------------------------------- about ----------------------------------- */
 .about{
   background:var(--ivory);
-  padding:130px 40px;
+  padding:110px 40px;
 }
+.about-simple{
+  max-width:640px;
+  margin:0 auto;
+  text-align:center;
+}
+.about-simple .signature{ margin-top:6px; }
 .about-grid{
   max-width:var(--container);
   margin:0 auto;
@@ -427,7 +433,7 @@ p{ margin:0; }
   font-size:16px;
   line-height:1.85;
   color:var(--ink-soft);
-  margin-bottom:22px;
+  margin:0 auto 22px;
   max-width:48ch;
 }
 .about-text .lead-line{
@@ -435,7 +441,8 @@ p{ margin:0; }
   font-size:clamp(24px,2.6vw,32px);
   color:var(--ink);
   line-height:1.35;
-  margin:18px 0 30px;
+  margin:18px auto 30px;
+  max-width:20ch;
 }
 .about-text .ask{
   font-family:var(--f-display);
