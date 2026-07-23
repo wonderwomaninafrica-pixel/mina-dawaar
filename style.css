@@ -6,14 +6,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&family=Petit+Formal+Script&display=swap');
 
 :root{
-  /* palette */
-  --ivory:      #F4EFE6;
-  --paper:      #FBF8F2;
-  --bone:       #E8E0CF;
-  --charcoal:   #2B2721;
-  --soft-black: #16130F;
-  --burgundy:   #6B1D22;
-  --burgundy-deep: #431113;
+  /* palette — retinted to match the reference mockup's sampled colors */
+  --ivory:      #EDE3D6;
+  --paper:      #F7F1E8;
+  --bone:       #E2D5C2;
+  --charcoal:   #2A2520;
+  --soft-black: #100E0B;
+  --burgundy:   #4A151A;
+  --burgundy-deep: #2E0C0F;
   --ink:        #211D18;
   --ink-soft:   #4A4438;
   --line-on-light: rgba(33,29,24,0.14);
