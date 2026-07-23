@@ -508,18 +508,31 @@ p{ margin:0; }
 .reveal.is-visible{ opacity:1; transform:translateY(0); }
 
 /* ------------------------------------ book page ------------------------------ */
-.book-hero{
-  padding:150px 40px 110px;
-  background:var(--bone);
+.book-hero-banner{
+  min-height:100vh;
+  background-image:url('hero-pale-room-texture.jpg');
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  position:relative;
+  padding:140px 40px;
 }
-.book-hero-grid{
-  max-width:var(--container);
-  margin:0 auto;
-  display:grid;
-  grid-template-columns:0.62fr 1fr;
-  gap:90px;
-  align-items:start;
+.banner-inner{ position:relative; z-index:1; }
+.banner-eyebrow{ font-size:13px; letter-spacing:0.4em; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:6px; }
+.banner-title{
+  font-family:var(--f-display); font-weight:500;
+  font-size:clamp(48px,8vw,120px); letter-spacing:0.06em; text-transform:uppercase;
+  color:var(--ink); line-height:1; margin:6px 0 20px;
 }
+.banner-subtitle{ font-size:12px; letter-spacing:0.35em; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:28px; }
+.banner-mark{ display:block; width:9px; height:9px; border-radius:50%; background:var(--burgundy); margin:0 auto 28px; }
+.banner-author{ font-size:13px; letter-spacing:0.32em; text-transform:uppercase; color:var(--ink); display:block; }
+
+.book-intro{ background:var(--bone); padding:110px 40px; }
+.book-intro-inner{ max-width:720px; margin:0 auto; }
 .back-link{
   font-size:11.5px;
   letter-spacing:0.2em;
@@ -528,7 +541,6 @@ p{ margin:0; }
   display:inline-block;
   margin-bottom:26px;
 }
-.book-hero h1{ font-size:clamp(36px,4.6vw,58px); color:var(--ink); margin:14px 0 20px; }
 .book-hook{
   font-family:var(--f-display);
   font-style:italic;
@@ -561,7 +573,7 @@ p{ margin:0; }
 
 /* ------------------------------------- responsive ----------------------------------- */
 @media (max-width: 980px){
-  .featured-grid, .about-grid, .book-hero-grid{ grid-template-columns:1fr; gap:56px; }
+  .featured-grid, .about-grid{ grid-template-columns:1fr; gap:56px; }
   .featured-grid{ direction:ltr; }
   .featured .book-cover{ max-width:320px; margin:0 auto; }
   .stay-grid{ grid-template-columns:1fr; }
@@ -570,7 +582,7 @@ p{ margin:0; }
   .related-grid{ grid-template-columns:repeat(3,1fr); }
 }
 @media (max-width: 640px){
-  .container, .hero, .featured, .collection, .about, .book-hero, .book-section{ padding-left:22px; padding-right:22px; }
+  .container, .hero, .featured, .collection, .about, .book-hero-banner, .book-intro, .book-section{ padding-left:22px; padding-right:22px; }
   .nav-links{
     position:fixed; top:0; right:0; height:100vh; width:72%;
     background:var(--ivory); flex-direction:column; justify-content:center;
