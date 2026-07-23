@@ -338,10 +338,10 @@ p{ margin:0; }
 .book-card .card-hook{
   position:absolute; inset:0; z-index:3;
   display:flex; align-items:center; justify-content:center; text-align:center;
-  padding:16%;
+  padding:13%;
   font-family:var(--f-display);
   font-style:italic;
-  font-size:clamp(14px,1.55vw,18px);
+  font-size:clamp(11.5px,1.15vw,14px);
   line-height:1.5;
   color:var(--ivory);
   opacity:0;
@@ -349,6 +349,17 @@ p{ margin:0; }
   transition:opacity .45s ease, transform .45s ease;
   background:rgba(10,9,7,0.72);
 }
+.card-hook .coming-soon-tag{
+  display:block;
+  font-family:var(--f-body);
+  font-style:normal;
+  font-size:10px;
+  letter-spacing:0.25em;
+  text-transform:uppercase;
+  color:#C98D8F;
+  margin-bottom:12px;
+}
+.book-card.not-yet-published{ cursor:default; }
 .book-card:hover .card-hook{ opacity:1; transform:translateY(0); }
 .book-card:hover .card-face{ opacity:0; transform:translateY(-6px); }
 .book-card::before{
