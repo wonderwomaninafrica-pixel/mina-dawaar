@@ -77,7 +77,7 @@ p{ margin:0; }
   z-index:500;
   display:flex;
   align-items:center;
-  justify-content:flex-end;
+  justify-content:space-between;
   padding:28px 40px;
   transition:padding .4s ease, background .4s ease, box-shadow .4s ease;
 }
@@ -89,10 +89,6 @@ p{ margin:0; }
 }
 .nav-toggle{ margin-left:24px; }
 .nav-mark{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
   font-family:var(--f-display);
   font-size:19px;
   letter-spacing:0.24em;
