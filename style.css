@@ -427,6 +427,9 @@ p{ margin:0; }
 .about{
   background:var(--ivory);
   padding:110px 40px;
+  min-height:90vh;
+  display:flex;
+  align-items:center;
 }
 .about-simple{
   max-width:640px;
