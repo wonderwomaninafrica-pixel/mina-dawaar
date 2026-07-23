@@ -95,6 +95,7 @@ p{ margin:0; }
   font-weight:600;
   color:var(--burgundy);
 }
+.nav-mark-big{ font-size:30px; letter-spacing:0.14em; }
 .nav-links{
   display:flex;
   gap:38px;
