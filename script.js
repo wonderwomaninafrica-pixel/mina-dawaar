@@ -54,15 +54,23 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  // newsletter (static demo — no backend)
+  // newsletter — sends to Google Sheet via Apps Script Web App
   var form = document.querySelector('.stay-form');
+  var SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbyRItv-sKu5QT9CkjvCTMJSSSUa909jONIu337XY68HOpQQrKG8MrVOosSJ1lJXbP-c/exec';
   if (form) {
     form.addEventListener('submit', function (e) {
       e.preventDefault();
-      var confirm = document.querySelector('.stay-confirm');
+      var confirmEl = document.querySelector('.stay-confirm');
       var input = form.querySelector('input');
-      if (input && input.value.trim().length > 2) {
-        if (confirm) { confirm.style.display = 'block'; }
+      var email = input ? input.value.trim() : '';
+      if (email.length > 2) {
+        fetch(SHEET_ENDPOINT, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: 'email=' + encodeURIComponent(email)
+        }).catch(function () { /* no-cors gives an opaque response either way */ });
+        if (confirmEl) { confirmEl.style.display = 'block'; }
         form.style.display = 'none';
       }
     });
