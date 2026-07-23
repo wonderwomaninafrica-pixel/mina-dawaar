@@ -131,12 +131,32 @@ p{ margin:0; }
   position:relative;
   padding:160px 40px 120px;
   background:
-    radial-gradient(ellipse 60% 50% at 18% 12%, rgba(255,255,255,0.55), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 90%, rgba(0,0,0,0.05), transparent 60%),
     repeating-linear-gradient(90deg, rgba(33,29,24,0.02) 0px, rgba(33,29,24,0.02) 1px, transparent 1px, transparent 3px),
     var(--ivory);
+  overflow:hidden;
 }
-.hero-inner{ max-width:var(--container); margin:0 auto; width:100%; position:relative; }
+.hero-scene{ position:absolute; inset:0; z-index:0; }
+.hero-scene::before{
+  /* the ambient light, always faintly present */
+  content:'';
+  position:absolute; inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 18% 12%, rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(ellipse 50% 40% at 85% 90%, rgba(0,0,0,0.05), transparent 60%);
+}
+.hero-reveal{
+  position:absolute; inset:0;
+  /* a shape that shouldn't be there — a doorway standing in the room */
+  background-image:
+    radial-gradient(ellipse 110px 300px at 70% 58%, rgba(20,17,12,0.4), rgba(20,17,12,0.12) 55%, transparent 75%),
+    radial-gradient(circle 5px at 70% 78%, var(--burgundy), transparent 100%);
+  opacity:0.16;
+  -webkit-mask-image: radial-gradient(circle 260px at var(--mx,70%) var(--my,58%), black 0%, transparent 100%);
+  mask-image: radial-gradient(circle 260px at var(--mx,70%) var(--my,58%), black 0%, transparent 100%);
+  transition: opacity .6s ease;
+}
+.hero:hover .hero-reveal{ opacity:0.5; }
+.hero-inner{ max-width:var(--container); margin:0 auto; width:100%; position:relative; z-index:1; }
 .hero h1{
   font-size:clamp(42px, 6.4vw, 92px);
   line-height:1.04;
