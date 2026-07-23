@@ -436,7 +436,7 @@ p{ margin:0; }
   margin:0 auto;
   text-align:center;
 }
-.about-simple.on-dark{ margin-bottom:90px; }
+.about-simple.on-dark{ margin-top:60px; margin-bottom:90px; }
 .about-simple .signature{ margin-top:6px; }
 .about-simple.on-dark p{ color:rgba(244,239,230,0.75); }
 .about-simple.on-dark .location{ color:rgba(244,239,230,0.55); }
