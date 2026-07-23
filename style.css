@@ -132,9 +132,16 @@ p{ margin:0; }
 .nav-toggle{ display:none; background:none; border:0; width:44px; height:44px; position:relative; cursor:pointer; }
 .nav-toggle span, .nav-toggle::before, .nav-toggle::after{
   content:''; position:absolute; left:50%; width:24px; height:1px; background:var(--ink); transform:translateX(-50%);
+  transition:background .4s ease;
 }
 .nav-toggle::before{ top:16px; } .nav-toggle::after{ bottom:16px; }
 .nav-toggle span{ top:50%; }
+.site-nav.on-dark-top .nav-toggle span,
+.site-nav.on-dark-top .nav-toggle::before,
+.site-nav.on-dark-top .nav-toggle::after{ background:var(--ivory); }
+.site-nav.on-dark-top.is-scrolled .nav-toggle span,
+.site-nav.on-dark-top.is-scrolled .nav-toggle::before,
+.site-nav.on-dark-top.is-scrolled .nav-toggle::after{ background:var(--ink); }
 
 /* --------------------------------- hero ----------------------------------- */
 .hero{
