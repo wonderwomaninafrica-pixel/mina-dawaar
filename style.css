@@ -93,7 +93,7 @@ p{ margin:0; }
   font-size:19px;
   letter-spacing:0.24em;
   font-weight:600;
-  color:var(--ink);
+  color:var(--burgundy);
 }
 .nav-links{
   display:flex;
