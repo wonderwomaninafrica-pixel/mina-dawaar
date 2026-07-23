@@ -126,56 +126,54 @@ p{ margin:0; }
 .hero{
   min-height:100vh;
   display:flex;
-  flex-direction:column;
+  align-items:center;
   justify-content:center;
+  text-align:center;
   position:relative;
   padding:160px 40px 120px;
-  background:
-    repeating-linear-gradient(90deg, rgba(33,29,24,0.02) 0px, rgba(33,29,24,0.02) 1px, transparent 1px, transparent 3px),
-    var(--ivory);
   overflow:hidden;
+  background:var(--ivory);
 }
-.hero-scene{ position:absolute; inset:0; z-index:0; }
-.hero-scene::before{
-  /* the ambient light, always faintly present */
-  content:'';
-  position:absolute; inset:0;
-  background:
-    radial-gradient(ellipse 60% 50% at 18% 12%, rgba(255,255,255,0.55), transparent 60%),
-    radial-gradient(ellipse 50% 40% at 85% 90%, rgba(0,0,0,0.05), transparent 60%);
+.hero-scene{
+  position:absolute; inset:-6%;
+  background-image:url('hero-pale-room-texture.jpg');
+  background-size:cover;
+  background-position:center;
+  animation:heroDrift 44s ease-in-out infinite alternate;
+  z-index:0;
 }
-.hero-reveal{
-  position:absolute; inset:0;
-  /* a shape that shouldn't be there — a doorway standing in the room */
-  background-image:
-    radial-gradient(ellipse 110px 300px at 70% 58%, rgba(20,17,12,0.4), rgba(20,17,12,0.12) 55%, transparent 75%),
-    radial-gradient(circle 5px at 70% 78%, var(--burgundy), transparent 100%);
-  opacity:0.16;
-  -webkit-mask-image: radial-gradient(circle 260px at var(--mx,70%) var(--my,58%), black 0%, transparent 100%);
-  mask-image: radial-gradient(circle 260px at var(--mx,70%) var(--my,58%), black 0%, transparent 100%);
-  transition: opacity .6s ease;
+@keyframes heroDrift{
+  0%{ transform:scale(1) translate(0,0); }
+  100%{ transform:scale(1.06) translate(-1.4%,-1%); }
 }
-.hero:hover .hero-reveal{ opacity:0.5; }
-.hero-inner{ max-width:var(--container); margin:0 auto; width:100%; position:relative; z-index:1; }
-.hero h1{
-  font-size:clamp(42px, 6.4vw, 92px);
-  line-height:1.04;
-  letter-spacing:-0.01em;
+.hero-spot{
+  position:absolute; left:50%; top:56%;
+  width:9px; height:9px; border-radius:50%;
+  background:var(--burgundy);
+  transform:translate(-50%,-50%) scale(0.4);
+  opacity:0;
+  box-shadow:0 0 14px 2px rgba(74,21,26,0.25);
+  animation:heroSpotIn 2.2s ease-out 2.6s forwards;
+  z-index:1;
+}
+@keyframes heroSpotIn{
+  0%{ opacity:0; transform:translate(-50%,-50%) scale(0.4); }
+  65%{ opacity:1; transform:translate(-50%,-50%) scale(1.15); }
+  100%{ opacity:1; transform:translate(-50%,-50%) scale(1); }
+}
+.hero-inner{ position:relative; z-index:2; max-width:var(--container); margin:0 auto; width:100%; }
+.hero-title{
+  display:block;
+  font-family:var(--f-display); font-weight:500;
+  font-size:clamp(40px,6.4vw,84px);
+  letter-spacing:0.05em; text-transform:uppercase;
   color:var(--ink);
-  max-width:15ch;
 }
-.hero-rule{
-  width:64px; height:1px; background:var(--burgundy);
-  margin:30px 0 26px;
-}
-.hero p.lede{
-  font-family:var(--f-body);
-  font-weight:300;
-  font-size:16.5px;
-  line-height:1.75;
+.hero-byline{
+  font-family:var(--f-body); font-weight:300;
+  font-size:12.5px; letter-spacing:0.32em; text-transform:uppercase;
   color:var(--ink-soft);
-  max-width:46ch;
-  margin-bottom:44px;
+  margin:18px 0 44px;
 }
 .btn{
   display:inline-flex;
