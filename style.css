@@ -94,7 +94,10 @@ p{ margin:0; }
   letter-spacing:0.24em;
   font-weight:600;
   color:var(--burgundy);
+  transition:color .4s ease;
 }
+.site-nav.on-dark-top .nav-mark{ color:var(--ivory); }
+.site-nav.on-dark-top.is-scrolled .nav-mark{ color:var(--burgundy); }
 .nav-mark-big{ font-size:30px; letter-spacing:0.14em; }
 .nav-links{
   display:flex;
