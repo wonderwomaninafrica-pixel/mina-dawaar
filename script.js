@@ -37,16 +37,6 @@ document.addEventListener('DOMContentLoaded', function () {
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
-  // hero: the hidden shape follows the cursor, like searching a dark room
-  var heroScene = document.getElementById('heroScene');
-  if (heroScene) {
-    heroScene.addEventListener('mousemove', function (e) {
-      var rect = heroScene.getBoundingClientRect();
-      heroScene.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
-      heroScene.style.setProperty('--my', (e.clientY - rect.top) + 'px');
-    });
-  }
-
   // book covers: subtle tilt toward the cursor, so they feel touchable
   document.querySelectorAll('.book-cover').forEach(function (cover) {
     cover.style.transition = 'transform .4s ease';
