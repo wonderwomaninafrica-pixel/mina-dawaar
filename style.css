@@ -508,28 +508,17 @@ p{ margin:0; }
 .reveal.is-visible{ opacity:1; transform:translateY(0); }
 
 /* ------------------------------------ book page ------------------------------ */
+.sr-only{
+  position:absolute; width:1px; height:1px; padding:0; margin:-1px;
+  overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0;
+}
 .book-hero-banner{
   min-height:100vh;
-  background-image:url('hero-pale-room-texture.jpg');
+  background-image:url('cover-pale-room.jpg');
   background-size:cover;
-  background-position:center;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
+  background-position:center 15%;
   position:relative;
-  padding:140px 40px;
 }
-.banner-inner{ position:relative; z-index:1; }
-.banner-eyebrow{ font-size:13px; letter-spacing:0.4em; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:6px; }
-.banner-title{
-  font-family:var(--f-display); font-weight:500;
-  font-size:clamp(48px,8vw,120px); letter-spacing:0.06em; text-transform:uppercase;
-  color:var(--ink); line-height:1; margin:6px 0 20px;
-}
-.banner-subtitle{ font-size:12px; letter-spacing:0.35em; text-transform:uppercase; color:var(--ink-soft); display:block; margin-bottom:28px; }
-.banner-mark{ display:block; width:9px; height:9px; border-radius:50%; background:var(--burgundy); margin:0 auto 28px; }
-.banner-author{ font-size:13px; letter-spacing:0.32em; text-transform:uppercase; color:var(--ink); display:block; }
 
 .book-intro{ background:var(--bone); padding:110px 40px; }
 .book-intro-inner{ max-width:720px; margin:0 auto; }
