@@ -16,6 +16,7 @@
   --burgundy-deep: #2E0C0F;
   --ink:        #211D18;
   --ink-soft:   #4A4438;
+  --rose-on-dark: #C98D8F;
   --line-on-light: rgba(33,29,24,0.14);
   --line-on-dark:  rgba(244,239,230,0.16);
   --ivory-soft: rgba(244,239,230,0.72);
@@ -67,7 +68,7 @@ p{ margin:0; }
   font-weight:500;
   color:var(--burgundy);
 }
-.eyebrow.on-dark{ color:#C98D8F; }
+.eyebrow.on-dark{ color:var(--rose-on-dark); }
 
 /* ---------------------------------- nav ---------------------------------- */
 .site-nav{
@@ -397,7 +398,7 @@ p{ margin:0; }
   font-size:10px;
   letter-spacing:0.25em;
   text-transform:uppercase;
-  color:#C98D8F;
+  color:var(--rose-on-dark);
   margin-bottom:12px;
 }
 .book-card.not-yet-published{ cursor:default; }
@@ -521,7 +522,7 @@ p{ margin:0; }
 .stay-form input::placeholder{ color:rgba(244,239,230,0.4); }
 .stay-form input:focus{ outline:none; border-color:var(--ivory); }
 .stay-actions{ margin-top:26px; }
-.stay-confirm{ font-size:13px; letter-spacing:0.08em; color:#C98D8F; margin-top:18px; display:none; }
+.stay-confirm{ font-size:13px; letter-spacing:0.08em; color:var(--rose-on-dark); margin-top:18px; display:none; }
 .stay-panel{
   position:relative;
   background:
