@@ -37,6 +37,33 @@ document.addEventListener('DOMContentLoaded', function () {
     reveals.forEach(function (el) { el.classList.add('is-visible'); });
   }
 
+  // hero: the hidden shape follows the cursor, like searching a dark room
+  var heroScene = document.getElementById('heroScene');
+  if (heroScene) {
+    heroScene.addEventListener('mousemove', function (e) {
+      var rect = heroScene.getBoundingClientRect();
+      heroScene.style.setProperty('--mx', (e.clientX - rect.left) + 'px');
+      heroScene.style.setProperty('--my', (e.clientY - rect.top) + 'px');
+    });
+  }
+
+  // book covers: subtle tilt toward the cursor, so they feel touchable
+  document.querySelectorAll('.book-cover').forEach(function (cover) {
+    cover.style.transition = 'transform .4s ease';
+    cover.style.transformStyle = 'preserve-3d';
+    cover.addEventListener('mousemove', function (e) {
+      var rect = cover.getBoundingClientRect();
+      var px = (e.clientX - rect.left) / rect.width - 0.5;
+      var py = (e.clientY - rect.top) / rect.height - 0.5;
+      cover.style.transition = 'transform .08s linear';
+      cover.style.transform = 'perspective(900px) rotateY(' + (px * 9).toFixed(2) + 'deg) rotateX(' + (-py * 9).toFixed(2) + 'deg) scale(1.015)';
+    });
+    cover.addEventListener('mouseleave', function () {
+      cover.style.transition = 'transform .5s cubic-bezier(.2,.7,.2,1)';
+      cover.style.transform = '';
+    });
+  });
+
   // newsletter (static demo — no backend)
   var form = document.querySelector('.stay-form');
   if (form) {
