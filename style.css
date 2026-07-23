@@ -76,11 +76,10 @@ p{ margin:0; }
   z-index:500;
   display:flex;
   align-items:center;
-  justify-content:space-between;
+  justify-content:flex-end;
   padding:28px 40px;
   transition:padding .4s ease, background .4s ease, box-shadow .4s ease;
 }
-.site-nav.no-mark{ justify-content:flex-end; }
 .site-nav.is-scrolled{
   padding:16px 40px;
   background:rgba(244,239,230,0.92);
@@ -89,12 +88,17 @@ p{ margin:0; }
 }
 .nav-toggle{ margin-left:24px; }
 .nav-mark{
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
   font-family:var(--f-display);
   font-size:19px;
   letter-spacing:0.24em;
   font-weight:600;
   color:var(--burgundy);
   transition:color .4s ease;
+  white-space:nowrap;
 }
 .site-nav.on-dark-top .nav-mark{ color:var(--ivory); }
 .site-nav.on-dark-top.is-scrolled .nav-mark{ color:var(--burgundy); }
@@ -636,6 +640,9 @@ p{ margin:0; }
 }
 @media (max-width: 640px){
   .container, .hero, .featured, .collection, .about, .book-hero-banner, .book-intro, .book-section{ padding-left:22px; padding-right:22px; }
+  .site-nav{ padding-left:20px; padding-right:20px; }
+  .site-nav.is-scrolled{ padding-left:20px; padding-right:20px; }
+  .nav-mark-big{ font-size:20px; letter-spacing:0.1em; }
   .nav-links{
     position:fixed; top:0; right:0; height:100vh; width:72%;
     background:var(--ivory); flex-direction:column; justify-content:center;
