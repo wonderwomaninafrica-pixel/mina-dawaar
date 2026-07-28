@@ -679,3 +679,12 @@ p{ margin:0; }
 @media (prefers-reduced-motion: reduce){
   *{ animation-duration:0.001ms !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
 }
+
+/* Content warning line on book pages */
+.content-warning{
+  font-size:13px;
+  line-height:1.6;
+  color:rgba(244,239,230,0.45);
+  margin-top:28px;
+  letter-spacing:0.02em;
+}
