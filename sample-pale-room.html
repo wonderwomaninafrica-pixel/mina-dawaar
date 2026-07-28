@@ -25,14 +25,24 @@
   <button class="nav-toggle" aria-label="Open menu"><span></span></button>
 </nav>
 
-<section class="sample-page">
-  <div class="sample-head">
+<section class="reader">
+  <div class="reader-head">
     <a href="pale-room.html" class="back-link">← Back to the book</a>
-    <span class="eyebrow on-dark">Read a Sample</span>
-    <h1 class="sample-book-title">The Pale Room</h1>
+    <span class="eyebrow on-dark">Read a Sample — The Pale Room</span>
   </div>
 
-  <article class="sample-body reveal">
+  <div class="book">
+    <div class="book-page" id="page" aria-live="polite"></div>
+  </div>
+
+  <div class="reader-controls">
+    <button class="pager prev" id="prev" aria-label="Previous page">‹</button>
+    <div class="reader-progress"><span id="pageNum">1</span> <span class="sep">/</span> <span id="pageTotal">–</span></div>
+    <button class="pager next" id="next" aria-label="Next page">›</button>
+  </div>
+  <p class="reader-hint">Use the arrows, your keyboard, or swipe to turn the page.</p>
+
+  <div id="source" hidden>
 <h2 class="chapter-heading">Chapter One</h2>
 <p>The therapist had told her to write the dream down, so she opened a new document and faced the white of the page. It came most nights now. It was always the same.</p>
 <p>A white room, no corners. The walls ran on past the place where a wall was supposed to stop, washed out, the colour gone out of them, and the light came from no direction she could name. The air there had no temperature. Someone stood close behind her, and she could never turn far enough around to see who it was.</p>
@@ -232,13 +242,12 @@
 <p class="msg">Mina: That's either a coincidence.</p>
 <p class="msg">T.K.: Or fate. If you believe in that.</p>
 <p class="msg">Mina: Starting to.</p>
-  </article>
-
-  <div class="sample-cta">
-    <p>The sample ends here — the story keeps going.</p>
-    <div class="book-actions">
-      <a href="https://www.amazon.ca/Pale-Room-Mina-Dawaar-ebook/dp/B0H8XPJDCD/" class="btn solid" target="_blank" rel="noopener">Keep reading on Amazon</a>
-      <a href="pale-room.html" class="btn on-dark">Back to the book</a>
+    <div class="end-page">
+      <p>The sample ends here — the story keeps going.</p>
+      <div class="book-actions">
+        <a href="https://www.amazon.ca/Pale-Room-Mina-Dawaar-ebook/dp/B0H8XPJDCD/" class="btn solid" target="_blank" rel="noopener">Keep reading on Amazon</a>
+        <a href="pale-room.html" class="btn on-dark">Back to the book</a>
+      </div>
     </div>
   </div>
 </section>
@@ -255,5 +264,104 @@
 </footer>
 
 <script src="script.js"></script>
+<script>
+(function(){
+  var pageEl = document.getElementById('page');
+  var source = document.getElementById('source');
+  var prevBtn = document.getElementById('prev');
+  var nextBtn = document.getElementById('next');
+  var numEl = document.getElementById('pageNum');
+  var totEl = document.getElementById('pageTotal');
+  if(!pageEl || !source) return;
+
+  var els = Array.prototype.slice.call(source.children);
+  var pages = [];
+  var current = 0;
+  var STORE = 'pr_sample_page';
+
+  function renderInto(target, nodes){
+    target.innerHTML = '';
+    for(var i=0;i<nodes.length;i++){ target.appendChild(nodes[i].cloneNode(true)); }
+  }
+
+  function buildPages(){
+    pages = [];
+    var cur = [];
+    function flush(){ if(cur.length){ pages.push(cur); cur = []; } }
+    for(var i=0;i<els.length;i++){
+      var el = els[i];
+      var isHeading = el.classList && el.classList.contains('chapter-heading');
+      var isEnd = el.classList && el.classList.contains('end-page');
+      if(isEnd){ flush(); pages.push([el]); continue; }
+      if(isHeading && cur.length){ flush(); }
+      cur.push(el);
+      renderInto(pageEl, cur);
+      if(pageEl.scrollHeight > pageEl.clientHeight + 1){
+        if(cur.length > 1){
+          cur.pop();
+          flush();
+          cur.push(el);
+        }
+        // a lone element taller than the page is accepted as-is
+      }
+    }
+    flush();
+    if(!pages.length) pages.push([]);
+  }
+
+  function show(i, dir){
+    current = Math.max(0, Math.min(pages.length - 1, i));
+    renderInto(pageEl, pages[current]);
+    pageEl.classList.remove('turn-next','turn-prev');
+    void pageEl.offsetWidth;
+    if(dir === 'next') pageEl.classList.add('turn-next');
+    else if(dir === 'prev') pageEl.classList.add('turn-prev');
+    numEl.textContent = current + 1;
+    totEl.textContent = pages.length;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === pages.length - 1;
+    try{ localStorage.setItem(STORE, String(current)); }catch(e){}
+  }
+
+  function init(){
+    buildPages();
+    var start = 0;
+    try{ var s = parseInt(localStorage.getItem(STORE), 10); if(!isNaN(s)) start = s; }catch(e){}
+    show(Math.min(start, pages.length - 1));
+  }
+
+  nextBtn.onclick = function(){ show(current + 1, 'next'); };
+  prevBtn.onclick = function(){ show(current - 1, 'prev'); };
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight') show(current + 1, 'next');
+    else if(e.key === 'ArrowLeft') show(current - 1, 'prev');
+  });
+  var tx = null;
+  pageEl.addEventListener('touchstart', function(e){ tx = e.changedTouches[0].clientX; }, {passive:true});
+  pageEl.addEventListener('touchend', function(e){
+    if(tx === null) return;
+    var dx = e.changedTouches[0].clientX - tx;
+    if(Math.abs(dx) > 50){ dx < 0 ? show(current + 1, 'next') : show(current - 1, 'prev'); }
+    tx = null;
+  }, {passive:true});
+
+  var rz;
+  window.addEventListener('resize', function(){
+    clearTimeout(rz);
+    rz = setTimeout(function(){
+      var anchor = (pages[current] && pages[current][0]) || null;
+      buildPages();
+      var np = 0;
+      if(anchor){
+        for(var i=0;i<pages.length;i++){ if(pages[i].indexOf(anchor) !== -1){ np = i; break; } }
+      }
+      show(np);
+    }, 200);
+  });
+
+  if(document.fonts && document.fonts.ready){ document.fonts.ready.then(init); }
+  else { window.addEventListener('load', init); }
+})();
+</script>
 </body>
 </html>
