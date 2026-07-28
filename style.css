@@ -684,6 +684,7 @@ p{ margin:0; }
 .content-warning{
   font-size:13px;
   line-height:1.6;
+  font-style:italic;
   color:rgba(244,239,230,0.45);
   margin-top:28px;
   letter-spacing:0.02em;
