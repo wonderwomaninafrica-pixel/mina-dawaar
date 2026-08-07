@@ -63,6 +63,9 @@ document.addEventListener('DOMContentLoaded', function () {
     var next = document.getElementById('next-page');
     var now = document.getElementById('page-now');
     var current = 0;
+    // pages ship visible so crawlers and text extractors get the whole sample;
+    // the reader collapses them to one at a time only once JS is running
+    pages.forEach(function (pg, i) { pg.hidden = i !== 0; });
 
     var show = function (i, dir) {
       if (i < 0 || i >= pages.length) { return; }
