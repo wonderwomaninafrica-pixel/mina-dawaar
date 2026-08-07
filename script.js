@@ -54,6 +54,49 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
+  // sample reader — pages live in the HTML so crawlers get the whole sample,
+  // and this only controls which one is on screen
+  var book = document.getElementById('reader-book');
+  if (book) {
+    var pages = Array.prototype.slice.call(book.querySelectorAll('.book-page'));
+    var prev = document.getElementById('prev-page');
+    var next = document.getElementById('next-page');
+    var now = document.getElementById('page-now');
+    var current = 0;
+
+    var show = function (i, dir) {
+      if (i < 0 || i >= pages.length) { return; }
+      pages[current].hidden = true;
+      pages[current].classList.remove('turn-next', 'turn-prev');
+      current = i;
+      pages[current].hidden = false;
+      if (dir) { pages[current].classList.add(dir === 1 ? 'turn-next' : 'turn-prev'); }
+      if (now) { now.textContent = String(current + 1); }
+      if (prev) { prev.disabled = current === 0; }
+      if (next) { next.disabled = current === pages.length - 1; }
+      var top = book.getBoundingClientRect().top + window.scrollY - 90;
+      if (window.scrollY > top) { window.scrollTo({ top: top, behavior: 'smooth' }); }
+    };
+
+    if (prev) { prev.addEventListener('click', function () { show(current - 1, -1); }); }
+    if (next) { next.addEventListener('click', function () { show(current + 1, 1); }); }
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { show(current + 1, 1); }
+      if (e.key === 'ArrowLeft') { show(current - 1, -1); }
+    });
+
+    var x0 = null;
+    book.addEventListener('touchstart', function (e) { x0 = e.changedTouches[0].clientX; }, { passive: true });
+    book.addEventListener('touchend', function (e) {
+      if (x0 === null) { return; }
+      var dx = e.changedTouches[0].clientX - x0;
+      if (Math.abs(dx) > 50) { show(current + (dx < 0 ? 1 : -1), dx < 0 ? 1 : -1); }
+      x0 = null;
+    }, { passive: true });
+
+    show(0);
+  }
+
   // newsletter — submits to Formspree, with a real success/error check
   var form = document.querySelector('.stay-form');
   if (form) {
