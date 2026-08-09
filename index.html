@@ -362,39 +362,38 @@
 </section>
 
 
-<!-- ================= STAY CLOSE ================= -->
-<section class="stay-close">
+<!-- ================= STAY CLOSE / CONTACT ================= -->
+<section id="contact" class="stay-close">
   <div class="stay-grid">
-    <div class="stay-text reveal">
+
+    <div class="stay-col reveal">
       <h2 class="eyebrow on-dark">Stay Close</h2>
       <p>Occasional letters. New releases. Early cover reveals. Behind-the-scenes glimpses into upcoming novels. No spam.</p>
       <form class="stay-form" action="https://formspree.io/f/xjgnavwo" method="POST">
-        <input type="email" name="email" placeholder="Email address" required>
+        <input type="email" name="email" placeholder="Email address" autocomplete="email" required>
         <div class="stay-actions">
           <button type="submit" class="btn solid">Join the List</button>
         </div>
       </form>
       <p class="stay-confirm">You're on the list.</p>
     </div>
-  </div>
-</section>
 
-<!-- ================= CONTACT ================= -->
-<section id="contact" class="contact-section">
-  <div class="contact-inner reveal">
-    <h2 class="eyebrow on-dark">Contact</h2>
-    <p class="contact-note">This form is the only way to reach me. There is no email address, and no other channel.</p>
-    <form class="contact-form" action="https://formspree.io/f/xjgnavwo" method="POST">
-      <input type="text" name="name" placeholder="Name" autocomplete="name" required>
-      <input type="email" name="email" placeholder="Email address" autocomplete="email" required>
-      <textarea name="message" rows="5" placeholder="Message" required></textarea>
-      <input type="hidden" name="_subject" value="Message from minadawaar.com">
-      <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="contact-actions">
-        <button type="submit" class="btn solid">Send</button>
-      </div>
-    </form>
-    <p class="contact-confirm">Message sent. Thank you.</p>
+    <div class="stay-col reveal">
+      <h2 class="eyebrow on-dark">Contact</h2>
+      <p>This form is the only way to reach me. There is no email address, and no other channel.</p>
+      <form class="contact-form" action="https://formspree.io/f/xjgnavwo" method="POST">
+        <input type="text" name="name" placeholder="Name" autocomplete="name" required>
+        <input type="email" name="email" placeholder="Email address" autocomplete="email" required>
+        <textarea name="message" rows="4" placeholder="Message" required></textarea>
+        <input type="hidden" name="_subject" value="Message from minadawaar.com">
+        <input type="text" name="_gotcha" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="contact-actions">
+          <button type="submit" class="btn solid">Send</button>
+        </div>
+      </form>
+      <p class="contact-confirm">Message sent. Thank you.</p>
+    </div>
+
   </div>
 </section>
 
