@@ -211,6 +211,13 @@ p{ margin:0; }
 .btn.solid{ background:var(--burgundy); border-color:var(--burgundy); color:var(--paper); }
 .btn.solid:hover{ background:var(--burgundy-deep); border-color:var(--burgundy-deep); color:var(--paper); }
 .btn.on-dark{ border-color:var(--ivory-soft); color:var(--ivory); }
+
+/* Outline buttons default to ink on ink, which disappears inside the dark book
+   and reader panels. Anything unfilled in those sections gets the light edge. */
+.book-intro .btn:not(.solid),
+.end-page .btn:not(.solid){ border-color:var(--ivory-soft); color:var(--ivory); }
+.book-intro .btn:not(.solid):hover,
+.end-page .btn:not(.solid):hover{ background:var(--ivory); color:var(--soft-black); border-color:var(--ivory); }
 .btn.on-dark:hover{ background:var(--ivory); color:var(--soft-black); }
 
 .scroll-cue{
