@@ -100,6 +100,41 @@ document.addEventListener('DOMContentLoaded', function () {
     show(0);
   }
 
+  // contact — same Formspree endpoint, posted without leaving the page
+  var contact = document.querySelector('.contact-form');
+  if (contact) {
+    contact.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var note = document.querySelector('.contact-confirm');
+      var btn = contact.querySelector('button[type="submit"]');
+      if (!contact.checkValidity()) { contact.reportValidity(); return; }
+      if (btn) { btn.disabled = true; }
+
+      fetch(contact.action, {
+        method: 'POST',
+        headers: { 'Accept': 'application/json' },
+        body: new FormData(contact)
+      }).then(function (response) {
+        if (response.ok) {
+          contact.style.display = 'none';
+          if (note) { note.style.display = 'block'; }
+        } else {
+          if (btn) { btn.disabled = false; }
+          if (note) {
+            note.textContent = 'Something went wrong. Please try again.';
+            note.style.display = 'block';
+          }
+        }
+      }).catch(function () {
+        if (btn) { btn.disabled = false; }
+        if (note) {
+          note.textContent = 'Something went wrong. Please try again.';
+          note.style.display = 'block';
+        }
+      });
+    });
+  }
+
   // newsletter — submits to Formspree, with a real success/error check
   var form = document.querySelector('.stay-form');
   if (form) {
