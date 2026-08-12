@@ -397,7 +397,7 @@ p{ margin:0; }
   transition:opacity .45s ease, transform .45s ease;
   background:rgba(10,9,7,0.72);
 }
-.card-hook .coming-soon-tag{
+.card-hook .card-tag{
   display:block;
   font-family:var(--f-body);
   font-style:normal;
@@ -791,7 +791,7 @@ p{ margin:0; }
     padding:0 0 12px;
   }
   .book-card .card-hook .hook-text{ display:none; }
-  .card-hook .coming-soon-tag{
+  .card-hook .card-tag{
     margin:0;
     padding:10px 8%;
     width:100%;
