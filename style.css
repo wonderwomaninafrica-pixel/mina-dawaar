@@ -368,8 +368,10 @@ p{ margin:0; }
   grid-template-columns:repeat(5, 1fr);
   gap:22px;
 }
+.book-item{ display:flex; flex-direction:column; }
 .book-card{
   position:relative;
+  display:block;
   aspect-ratio:2/3;
   overflow:hidden;
   cursor:pointer;
@@ -383,32 +385,6 @@ p{ margin:0; }
 .book-card .cover-title{ font-size:clamp(15px,1.5vw,19px); color:inherit; }
 .book-card .cover-author{ color:inherit; opacity:.68; }
 .book-card .card-face{ position:relative; z-index:2; height:100%; display:flex; flex-direction:column; justify-content:space-between; transition:opacity .4s ease, transform .4s ease; }
-.book-card .card-hook{
-  position:absolute; inset:0; z-index:3;
-  display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center;
-  padding:13%;
-  font-family:var(--f-display);
-  font-style:italic;
-  font-size:clamp(11.5px,1.15vw,14px);
-  line-height:1.5;
-  color:var(--ivory);
-  opacity:0;
-  transform:translateY(10px);
-  transition:opacity .45s ease, transform .45s ease;
-  background:rgba(10,9,7,0.72);
-}
-.card-hook .card-tag{
-  display:block;
-  font-family:var(--f-body);
-  font-style:normal;
-  font-size:10px;
-  letter-spacing:0.25em;
-  text-transform:uppercase;
-  color:var(--rose-on-dark);
-  margin-bottom:12px;
-}
-.book-card.not-yet-published{ cursor:default; }
-.book-card:hover .card-hook{ opacity:1; transform:translateY(0); }
 .book-card:hover .card-face{ opacity:0; transform:translateY(-6px); }
 .book-card::before{
   content:''; position:absolute; inset:0; z-index:1;
@@ -779,32 +755,10 @@ p{ margin:0; }
   .reader-hint{ display:none; }
 }
 
-/* Touch devices get no :hover, so the card hooks were unreachable: every cover
-   on the collection grid showed no text at all, published or not. Show the tag,
-   keep the cover visible, and leave the hook prose to the book page. */
 @media (hover:none){
-  .book-card .card-hook{
-    opacity:1;
-    transform:none;
-    background:none;
-    justify-content:flex-end;
-    padding:0 0 12px;
-  }
-  .book-card .card-hook .hook-text{ display:none; }
-  .card-hook .card-tag{
-    margin:0;
-    padding:10px 8%;
-    width:100%;
-    background:linear-gradient(0deg, rgba(10,9,7,0.78), transparent);
-  }
   .book-card:hover{ transform:none; }
   .book-card:hover .card-face{ opacity:1; transform:none; }
   .related-card:hover{ transform:none; }
-}
-
-@media (max-width:1100px){
-  /* 30px tall was under the comfortable tap-target floor */
-  .nav-links a{ padding:15px 0; }
 }
 
 @media (max-width:640px){
@@ -869,4 +823,52 @@ p{ margin:0; }
   color:rgba(244,239,230,0.35);
   margin:22px 0 22px;
   font-size:13px;
+}
+
+/* ------------------------------ collection actions ---------------------------- */
+.card-actions{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:10px;
+  padding-top:16px;
+  margin-top:auto;
+}
+.card-sample{
+  font-family:var(--f-body);
+  font-size:10.5px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--rose-on-dark);
+  text-decoration:none;
+  border-bottom:1px solid rgba(201,141,143,0.45);
+  padding-bottom:3px;
+  transition:color .3s ease, border-color .3s ease;
+}
+.card-sample:hover{ color:var(--ivory); border-color:var(--ivory); }
+.card-buy{
+  display:block;
+  width:100%;
+  text-align:center;
+  font-family:var(--f-body);
+  font-size:10.5px;
+  letter-spacing:0.2em;
+  text-transform:uppercase;
+  color:var(--bone);
+  text-decoration:none;
+  border:1px solid rgba(226,213,194,0.45);
+  padding:11px 8px;
+  transition:background .35s ease, color .35s ease, border-color .35s ease;
+}
+.card-buy:hover{ background:var(--bone); color:var(--soft-black); border-color:var(--bone); }
+.card-buy.is-soon{
+  color:rgba(226,213,194,0.4);
+  border-color:rgba(226,213,194,0.16);
+  cursor:default;
+}
+.card-buy.is-soon:hover{ background:none; color:rgba(226,213,194,0.4); border-color:rgba(226,213,194,0.16); }
+
+@media (max-width:900px){
+  .card-sample, .card-buy{ font-size:9.5px; letter-spacing:0.14em; }
+  .card-buy{ padding:10px 4px; }
 }
