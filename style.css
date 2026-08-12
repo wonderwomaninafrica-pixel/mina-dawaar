@@ -862,3 +862,11 @@ p{ margin:0; }
   .contact-form textarea,
   .stay-form input{ font-size:16px; }
 }
+
+.book-page p.scene-break{
+  text-align:center;
+  letter-spacing:0.6em;
+  color:rgba(244,239,230,0.35);
+  margin:22px 0 22px;
+  font-size:13px;
+}

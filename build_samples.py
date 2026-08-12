@@ -12,7 +12,17 @@ from pathlib import Path
 EPUB = Path("/home/claude/ep")
 SITE = Path("/home/claude/repo")
 
+MD = Path("/mnt/user-data/uploads")
+
 BOOKS = [
+    {
+        "sample": "sample-remembering-it-wrong.html",
+        "md": MD / "youre-remembering-it-wrong.md",
+    },
+    {
+        "sample": "sample-perfect-patient.html",
+        "md": MD / "the-perfect-patient.md",
+    },
     {
         "sample": "sample-pale-room.html",
         "src": EPUB / "THE_PALE_ROOM/EPUB/text",
@@ -52,6 +62,44 @@ def read_chapter(path):
     return num, paras
 
 
+def md_chapters(path, wanted=(1, 2)):
+    """Read the first two chapters out of a manuscript markdown file."""
+    src = path.read_text(encoding="utf-8")
+    parts = re.split(r"^# (.*)$", src, flags=re.M)
+    found = {}
+    for i in range(1, len(parts), 2):
+        m = re.fullmatch(r"Chapter (\d+)", parts[i].strip())
+        if m and int(m.group(1)) in wanted:
+            found[int(m.group(1))] = parts[i + 1]
+
+    out = []
+    for num in wanted:
+        paras = []
+        for block in re.split(r"\n\s*\n", found[num].strip()):
+            block = " ".join(block.split())
+            if not block:
+                continue
+            if "scene-break" in block:
+                paras.append(("break", "* * *"))
+                continue
+            # a paragraph that is entirely emphasised is a written or recorded
+            # fragment, and gets the same offset treatment as the message lines
+            whole = re.fullmatch(r"\*\*?([^*].*?)\*\*?", block)
+            if whole:
+                paras.append(("msg", inline(whole.group(1))))
+            else:
+                paras.append((None, inline(block)))
+        out.append((num, paras))
+    return out
+
+
+def inline(text):
+    text = html.escape(text, quote=False)
+    text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
+    text = re.sub(r"(?<!\*)\*([^*]+?)\*(?!\*)", r"<em>\1</em>", text)
+    return text
+
+
 def paginate(chapters):
     """Group paragraphs into pages; each chapter starts a fresh page."""
     pages = []
@@ -60,7 +108,7 @@ def paginate(chapters):
         current.append(("heading", WORDS[num]))
         for cls, text in paras:
             current.append((cls, text))
-            size += len(re.sub("<[^>]+>", "", text))
+            size += 0 if cls == "break" else len(re.sub("<[^>]+>", "", text))
             if size >= PAGE_TARGET:
                 pages.append(current)
                 current, size = [], 0
@@ -74,7 +122,9 @@ def render(pages, end_block):
     for i, page in enumerate(pages, 1):
         out.append(f'  <div class="book-page" data-page="{i}">')
         for cls, text in page:
-            if cls == "heading":
+            if cls == "break":
+                out.append(f'    <p class="scene-break">{text}</p>')
+            elif cls == "heading":
                 out.append(f'    <h2 class="chapter-heading">Chapter {text}</h2>')
             elif cls == "msg":
                 out.append(f'    <p class="msg">{text}</p>')
@@ -90,7 +140,10 @@ for book in BOOKS:
     target = SITE / book["sample"]
     doc = target.read_text(encoding="utf-8")
 
-    chapters = [read_chapter(book["src"] / c) for c in book["chapters"]]
+    if "md" in book:
+        chapters = md_chapters(book["md"])
+    else:
+        chapters = [read_chapter(book["src"] / c) for c in book["chapters"]]
     assert [c[0] for c in chapters] == [1, 2], book["sample"]
 
     # keep the existing end page exactly as written, only renumber it
