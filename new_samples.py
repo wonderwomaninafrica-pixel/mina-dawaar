@@ -153,6 +153,9 @@ TEMPLATE = """<!DOCTYPE html>
   <p class="reader-hint">Use the arrows or your keyboard to turn the page</p>
 </section>
 
+<!-- Add the "More Free Samples" row here: copy the block from any existing
+     sample page and drop this page's own cover from it. -->
+
 <footer class="site-footer">
   <div class="footer-inner">
     <span>&copy; 2026 Mina Dawaar</span>

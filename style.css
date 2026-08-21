@@ -883,3 +883,8 @@ p{ margin:0; }
   max-width:48ch;
 }
 .about-simple.on-dark .bio-line{ color:rgba(244,239,230,0.75); }
+
+/* five covers read better in one row than three-plus-two */
+.related-grid-wide{ grid-template-columns:repeat(5,1fr); max-width:760px; gap:16px; }
+@media (max-width:900px){ .related-grid-wide{ grid-template-columns:repeat(3,1fr); gap:14px; } }
+@media (max-width:520px){ .related-grid-wide{ grid-template-columns:repeat(2,1fr); gap:12px; } }
