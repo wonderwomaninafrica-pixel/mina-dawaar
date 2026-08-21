@@ -12,6 +12,13 @@ BASE = "https://www.minadawaar.com"
 
 BOOKS = [
     {
+        "slug": "sample-good-mother.html",
+        "title": "The Good Mother",
+        "plain": "The Good Mother",
+        "cover": "cover-good-mother.jpg",
+        "w": 1023, "h": 1537,
+    },
+    {
         "slug": "sample-remembering-it-wrong.html",
         "title": "You&rsquo;re Remembering It Wrong",
         "plain": "You're Remembering It Wrong",
@@ -159,7 +166,7 @@ TEMPLATE = """<!DOCTYPE html>
 </html>
 """
 
-for b in BOOKS:
+for b in BOOKS[:1]:
     (SITE / b["slug"]).write_text(
         TEMPLATE.format(base=BASE, **b), encoding="utf-8"
     )

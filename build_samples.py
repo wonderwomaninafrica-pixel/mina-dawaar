@@ -16,6 +16,10 @@ MD = Path("/mnt/user-data/uploads")
 
 BOOKS = [
     {
+        "sample": "sample-good-mother.html",
+        "md": MD / "The_Good_Mother.md",
+    },
+    {
         "sample": "sample-remembering-it-wrong.html",
         "md": MD / "youre-remembering-it-wrong.md",
     },
@@ -94,6 +98,7 @@ def md_chapters(path, wanted=(1, 2)):
 
 
 def inline(text):
+    text = re.sub(r"\[(.)\]\{\.dropcap\}", r"\1", text)
     text = html.escape(text, quote=False)
     text = re.sub(r"\*\*(.+?)\*\*", r"<strong>\1</strong>", text)
     text = re.sub(r"(?<!\*)\*([^*]+?)\*(?!\*)", r"<em>\1</em>", text)
