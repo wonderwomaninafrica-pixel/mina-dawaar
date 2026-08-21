@@ -44,6 +44,7 @@ TEMPLATE = """<!DOCTYPE html>
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="{base}/{slug}">
 <link rel="icon" type="image/png" href="favicon.png">
+<meta name="geo.region" content="CA-ON">
 <meta name="theme-color" content="#100E0B">
 
 <meta property="og:type" content="article">
@@ -52,6 +53,7 @@ TEMPLATE = """<!DOCTYPE html>
 <meta property="og:description" content="The opening two chapters of a forthcoming novel, free to read. No signup, no email.">
 <meta property="og:url" content="{base}/{slug}">
 <meta property="og:locale" content="en_CA">
+<meta property="og:locale:alternate" content="en_US">
 <meta property="og:image" content="{base}/{cover}">
 <meta property="og:image:width" content="{w}">
 <meta property="og:image:height" content="{h}">
