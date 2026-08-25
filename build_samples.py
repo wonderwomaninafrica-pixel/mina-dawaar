@@ -16,31 +16,28 @@ MD = Path("/mnt/user-data/uploads")
 
 BOOKS = [
     {
+        "sample": "sample-pale-room.html",
+        "md": MD / "The_Pale_Room.md",
+    },
+    {
+        "sample": "sample-mind-of-an-obsessed-woman.html",
+        "md": MD / "The_Mind_of_an_Obsessed_Woman.md",
+    },
+    {
+        "sample": "sample-perfect-patient.html",
+        "md": MD / "THE-PERFECT-PATIENT.md",
+    },
+    {
+        "sample": "sample-remembering-it-wrong.html",
+        "md": MD / "YOURE_REMEMBERING_IT_WRONG.md",
+    },
+    {
         "sample": "sample-good-mother.html",
         "md": MD / "The_Good_Mother.md",
     },
     {
-        "sample": "sample-remembering-it-wrong.html",
-        "md": MD / "youre-remembering-it-wrong.md",
-    },
-    {
-        "sample": "sample-perfect-patient.html",
-        "md": MD / "the-perfect-patient.md",
-    },
-    {
-        "sample": "sample-pale-room.html",
-        "src": EPUB / "THE_PALE_ROOM/EPUB/text",
-        "chapters": ["ch003.xhtml", "ch004.xhtml"],
-    },
-    {
         "sample": "sample-last-thing-she-remembered.html",
-        "src": EPUB / "The_Last_Thing_She_Remembered/EPUB/text",
-        "chapters": ["ch001.xhtml", "ch002.xhtml"],
-    },
-    {
-        "sample": "sample-mind-of-an-obsessed-woman.html",
-        "src": EPUB / "The_Mind_of_an_Obsessed_Woman/EPUB/text",
-        "chapters": ["ch003.xhtml", "ch004.xhtml"],
+        "md": MD / "The_Last_Thing_She_Remembered.md",
     },
 ]
 
