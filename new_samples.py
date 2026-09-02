@@ -12,24 +12,10 @@ BASE = "https://www.minadawaar.com"
 
 BOOKS = [
     {
-        "slug": "sample-good-mother.html",
-        "title": "The Good Mother",
-        "plain": "The Good Mother",
-        "cover": "cover-good-mother.jpg",
-        "w": 1023, "h": 1537,
-    },
-    {
-        "slug": "sample-remembering-it-wrong.html",
-        "title": "You&rsquo;re Remembering It Wrong",
-        "plain": "You're Remembering It Wrong",
-        "cover": "cover-remembering-it-wrong.jpg",
-        "w": 1023, "h": 1537,
-    },
-    {
-        "slug": "sample-perfect-patient.html",
-        "title": "The Perfect Patient",
-        "plain": "The Perfect Patient",
-        "cover": "cover-perfect-patient.jpg",
+        "slug": "sample-everyone-who-loves-me-dies.html",
+        "title": "Everyone Who Loves Me Dies",
+        "plain": "Everyone Who Loves Me Dies",
+        "cover": "cover-everyone-who-loves-me-dies.jpg",
         "w": 1023, "h": 1537,
     },
 ]
@@ -39,7 +25,7 @@ TEMPLATE = """<!DOCTYPE html>
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Read a Free Sample: {title} &mdash; Mina Dawaar</title>
+<title>Free Sample: {title} | Mina Dawaar</title>
 <meta name="description" content="Read the opening two chapters of {plain} by Mina Dawaar, free. An early look at a forthcoming novel. No signup, no email.">
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large">
 <link rel="canonical" href="{base}/{slug}">
@@ -153,9 +139,6 @@ TEMPLATE = """<!DOCTYPE html>
   <p class="reader-hint">Use the arrows or your keyboard to turn the page</p>
 </section>
 
-<!-- Add the "More Free Samples" row here: copy the block from any existing
-     sample page and drop this page's own cover from it. -->
-
 <footer class="site-footer">
   <div class="footer-inner">
     <span>&copy; 2026 Mina Dawaar</span>
@@ -171,7 +154,7 @@ TEMPLATE = """<!DOCTYPE html>
 </html>
 """
 
-for b in BOOKS[:1]:
+for b in BOOKS:
     (SITE / b["slug"]).write_text(
         TEMPLATE.format(base=BASE, **b), encoding="utf-8"
     )

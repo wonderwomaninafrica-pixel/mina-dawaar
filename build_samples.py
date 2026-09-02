@@ -17,27 +17,31 @@ MD = Path("/mnt/user-data/uploads")
 BOOKS = [
     {
         "sample": "sample-pale-room.html",
-        "md": MD / "The_Pale_Room.md",
+        "md": MD / "The_Pale_Room_1.md",
     },
     {
         "sample": "sample-mind-of-an-obsessed-woman.html",
-        "md": MD / "The_Mind_of_an_Obsessed_Woman.md",
-    },
-    {
-        "sample": "sample-perfect-patient.html",
-        "md": MD / "THE-PERFECT-PATIENT.md",
-    },
-    {
-        "sample": "sample-remembering-it-wrong.html",
-        "md": MD / "YOURE_REMEMBERING_IT_WRONG.md",
-    },
-    {
-        "sample": "sample-good-mother.html",
-        "md": MD / "The_Good_Mother.md",
+        "md": MD / "The_Mind_of_an_Obsessed_Woman_1.md",
     },
     {
         "sample": "sample-last-thing-she-remembered.html",
-        "md": MD / "The_Last_Thing_She_Remembered.md",
+        "md": MD / "THE_LAST_THING_SHE_REMEMBERED.md",
+    },
+    {
+        "sample": "sample-perfect-patient.html",
+        "md": MD / "THE_PERFECT_PATIENT.md",
+    },
+    {
+        "sample": "sample-remembering-it-wrong.html",
+        "md": MD / "YOURE_REMEMBERING_IT_WRONG_1.md",
+    },
+    {
+        "sample": "sample-good-mother.html",
+        "md": MD / "THE_GOOD_MOTHER.md",
+    },
+    {
+        "sample": "sample-everyone-who-loves-me-dies.html",
+        "md": MD / "Everyone_Who_Loves_Me_Dies.md",
     },
 ]
 
