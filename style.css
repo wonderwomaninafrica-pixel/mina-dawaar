@@ -913,3 +913,20 @@ p{ margin:0; }
   .pager{ min-width:44px; min-height:44px; }
   .nav-links a{ padding:6px 0; display:inline-block; }
 }
+
+/* covers with no sample yet: no link, and the action row keeps its height so
+   every card in a row still lines up at the bottom */
+.book-card.is-unreleased{ cursor:default; }
+.card-actions{ min-height:62px; justify-content:flex-end; }
+@media (max-width:640px){ .card-actions{ min-height:54px; } }
+
+/* At two columns these two covers would sit one directly above the other, and
+   they read as the same image at a glance. Swap the pair on phones only.
+   Items sharing an order value keep their source order. */
+@media (max-width:640px){
+  .book-item{ order:1; }
+  .swap-a{ order:2; }   /* The Last Person She Trusted */
+  .swap-b{ order:3; }   /* Nothing Happened at All */
+  .swap-c{ order:4; }   /* The Correspondent */
+  .swap-d{ order:5; }   /* The Perfect Victim */
+}
