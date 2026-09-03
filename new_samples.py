@@ -12,10 +12,31 @@ BASE = "https://www.minadawaar.com"
 
 BOOKS = [
     {
-        "slug": "sample-everyone-who-loves-me-dies.html",
-        "title": "Everyone Who Loves Me Dies",
-        "plain": "Everyone Who Loves Me Dies",
-        "cover": "cover-everyone-who-loves-me-dies.jpg",
+        "slug": "sample-nothing-happened-at-all.html",
+        "title": "Nothing Happened at All",
+        "plain": "Nothing Happened at All",
+        "cover": "cover-nothing-happened-at-all.jpg",
+        "w": 1023, "h": 1537,
+    },
+    {
+        "slug": "sample-last-person-she-trusted.html",
+        "title": "The Last Person She Trusted",
+        "plain": "The Last Person She Trusted",
+        "cover": "cover-last-person-she-trusted.jpg",
+        "w": 1023, "h": 1537,
+    },
+    {
+        "slug": "sample-correspondent.html",
+        "title": "The Correspondent",
+        "plain": "The Correspondent",
+        "cover": "cover-correspondent.jpg",
+        "w": 1023, "h": 1537,
+    },
+    {
+        "slug": "sample-perfect-victim.html",
+        "title": "The Perfect Victim",
+        "plain": "The Perfect Victim",
+        "cover": "cover-perfect-victim.jpg",
         "w": 1023, "h": 1537,
     },
 ]

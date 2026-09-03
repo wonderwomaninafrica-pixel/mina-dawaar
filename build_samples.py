@@ -43,6 +43,22 @@ BOOKS = [
         "sample": "sample-everyone-who-loves-me-dies.html",
         "md": MD / "Everyone_Who_Loves_Me_Dies.md",
     },
+    {
+        "sample": "sample-nothing-happened-at-all.html",
+        "md": MD / "NOTHING_HAPPENED_AT_ALL.md",
+    },
+    {
+        "sample": "sample-last-person-she-trusted.html",
+        "md": MD / "THE_LAST_PERSON_SHE_TRUSTED.md",
+    },
+    {
+        "sample": "sample-correspondent.html",
+        "md": MD / "The_Correspondent___manuscript.md",
+    },
+    {
+        "sample": "sample-perfect-victim.html",
+        "md": MD / "THE-PERFECT-VICTIM.md",
+    },
 ]
 
 WORDS = {1: "One", 2: "Two"}
@@ -70,7 +86,7 @@ def read_chapter(path):
 def md_chapters(path, wanted=(1, 2)):
     """Read the first two chapters out of a manuscript markdown file."""
     src = path.read_text(encoding="utf-8")
-    parts = re.split(r"^# (.*)$", src, flags=re.M)
+    parts = re.split(r"^#{1,2} (.*)$", src, flags=re.M)
     found = {}
     for i in range(1, len(parts), 2):
         m = re.fullmatch(r"Chapter (\d+)", parts[i].strip())
